@@ -13,8 +13,8 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mousePosUnits = Input.mousePosition.x/ Screen.width * screenWidthUnits;
-        Vector2 paddlePos = new Vector2(mousePosUnits, transform.position.y);
+        var sp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 paddlePos = new Vector2(sp.x, transform.position.y);
         transform.position = paddlePos;
     }
 }
