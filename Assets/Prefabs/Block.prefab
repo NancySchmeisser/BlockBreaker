@@ -119,3 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb1fc7c147fb1a43afce36b4f0cd77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakSound: {fileID: 8300000, guid: 246895584b82ae84f99a7f1c09b1c51b, type: 3}
