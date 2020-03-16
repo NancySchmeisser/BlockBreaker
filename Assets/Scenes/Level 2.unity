@@ -517,11 +517,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1155012339}
     m_Modifications:
-    - target: {fileID: 6136653505845865794, guid: 471a8266e4dcc9747a14192ba5539364,
-        type: 3}
-      propertyPath: breakSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 246895584b82ae84f99a7f1c09b1c51b, type: 3}
     - target: {fileID: 6136653505845865796, guid: 471a8266e4dcc9747a14192ba5539364,
         type: 3}
       propertyPath: m_LocalPosition.x
