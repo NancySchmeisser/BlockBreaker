@@ -2144,6 +2144,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Score Text
       objectReference: {fileID: 0}
+    - target: {fileID: 7843939336942681848, guid: e523fd2cb5ce15c489d991e0ee743745,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 260
+      objectReference: {fileID: 0}
     - target: {fileID: 7843939336942681849, guid: e523fd2cb5ce15c489d991e0ee743745,
         type: 3}
       propertyPath: m_LocalPosition.x
