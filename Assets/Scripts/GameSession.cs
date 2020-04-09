@@ -13,6 +13,8 @@ public class GameSession : MonoBehaviour
     // state variables
     [SerializeField] int currentScore = 0;
 
+    public int Length { get; private set; }
+
     private void Awake()
     {
         int gameStatusCount = FindObjectOfType<GameSession>().Length;
