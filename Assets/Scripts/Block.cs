@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+
+    //config params
     [SerializeField] AudioClip breakSound;
     [SerializeField] GameObject blockSparklesVFX;
+    [SerializeField] int maxHits;
 
 
 
     // cached reference
     Level level;
+
+    // state variables
+    [SerializeField] int timesHit; // TODO only serialized for debug purposes
 
     private void Start()
     {
@@ -30,30 +36,40 @@ public class Block : MonoBehaviour
     {
         if (tag == "Breakable")
         {
-            DestroyBlock();
+            HandleHit();
+        }
+    }
+
+    private void HandleHit()
+    {
+        timesHit++;
+
+        {
+            if (timesHit >= maxHits)
+                DestroyBlock();
         }
     }
 
     private void DestroyBlock()
-    {  
-            PlayBlockDestroySFX();
-            Destroy(gameObject);
-            level.BlockDestroyed();
-            TriggerSparklesVFX();
-        
+    {
+        PlayBlockDestroySFX();
+        Destroy(gameObject);
+        level.BlockDestroyed();
+        TriggerSparklesVFX();
+
     }
 
     private void PlayBlockDestroySFX()
     {
-        
-            FindObjectOfType<GameSession>().AddToScore();
-            AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
-        
+
+        FindObjectOfType<GameSession>().AddToScore();
+        AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
+
     }
 
     private void TriggerSparklesVFX()
     {
         GameObject sparkles = Instantiate(blockSparklesVFX, transform.position, transform.rotation);
-        Destroy(sparkles, 1f); 
+        Destroy(sparkles, 1f);
     }
 }
