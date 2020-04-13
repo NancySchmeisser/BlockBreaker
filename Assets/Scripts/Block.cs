@@ -44,7 +44,7 @@ public class Block : MonoBehaviour
     private void HandleHit()
     {
         timesHit++;
-        int maxHits = hitSprites.Length +1;
+        int maxHits = hitSprites.Length + 1;
 
 
         if (timesHit >= maxHits)
