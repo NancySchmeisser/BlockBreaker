@@ -7,8 +7,15 @@ public class Paddle : MonoBehaviour
 {
     [SerializeField] float maxX = 1215;
     [SerializeField] float minX = 0;
+
+    // cached reference
+    GameSession theGamesSession;
+    Ball theBall;
+
     void Start()
     {
+        theGamesSession = FindObjectOfType<GameSession>();
+        theBall = FindObjectOfType<Ball>();
     }
 
     // Update is called once per frame
@@ -18,8 +25,21 @@ public class Paddle : MonoBehaviour
         var sp = Camera.main.ScreenToWorldPoint(paddlePosOnScreen); 
         Vector2 paddlePos = new Vector2(sp.x, transform.position.y);
         transform.position = paddlePos;
-        paddlePos.x = Mathf.Clamp(sp.x, minX, maxX);
+        paddlePos.x = Mathf.Clamp(GetXPos(), minX, maxX);
 
+    }
+
+    private float GetXPos()
+    {
+        if (theGamesSession.IsAutoPlayEnabled())
+        {
+            return theBall.transform.position.x;
+
+
+        }
+        else
+        {
+            return Input.mousePosition.x;         }
     }
 }
 
