@@ -21,12 +21,18 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var paddlePosOnScreen = new Vector2(Mathf.Clamp(Input.mousePosition.x, 60, 1160), Input.mousePosition.y);
-        var sp = Camera.main.ScreenToWorldPoint(paddlePosOnScreen); 
-        Vector2 paddlePos = new Vector2(sp.x, transform.position.y);
-        transform.position = paddlePos;
-        paddlePos.x = Mathf.Clamp(GetXPos(), minX, maxX);
-
+        Vector2 paddlePosOnScreen;
+        if (!theGamesSession.IsAutoPlayEnabled())
+        {
+            paddlePosOnScreen = new Vector2(Mathf.Clamp(Input.mousePosition.x, 60, 1160), Input.mousePosition.y);
+            var sp = Camera.main.ScreenToWorldPoint(paddlePosOnScreen);
+            Vector2 paddlePos = new Vector2(sp.x, transform.position.y);
+            transform.position = paddlePos;
+        }
+        else
+        {
+            transform.position = new Vector2(theBall.transform.position.x, transform.position.y);
+        }
     }
 
     private float GetXPos()
@@ -34,12 +40,11 @@ public class Paddle : MonoBehaviour
         if (theGamesSession.IsAutoPlayEnabled())
         {
             return theBall.transform.position.x;
-
-
         }
         else
         {
-            return Input.mousePosition.x;         }
+            return Input.mousePosition.x;         
+        }
     }
 }
 
